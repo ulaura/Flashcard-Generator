@@ -17,7 +17,7 @@ function BasicCard(front, back) {
 	};
 
 	//module to ask a question 
-	this.askQuestion = function (a) {
+	this.askQuestion = function () {
 		console.log("Question: " + this.front);
 		console.log("");
 		this.answerQuestion();
