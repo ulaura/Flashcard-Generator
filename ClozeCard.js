@@ -1,10 +1,18 @@
 //the constructor ClozeCard
 function ClozeCard(text, cloze) {
-	//the text, should be the full text
-	this.text = text;
 
-	//the part of the text that's cloze-deleted
-	this.cloze = cloze;
+	//making the constructor scope-safe so new objects don't need the keyword "new" before ClozeCard
+	if (this instanceof ClozeCard) {
+		//the text, should be the full text
+		this.text = text;
+
+		//the part of the text that's cloze-deleted
+		this.cloze = cloze;
+	}
+
+	else {
+		return new ClozeCard(text, cloze);
+	};
 
 	//module to show partial text
 	this.partial = function() {
@@ -36,17 +44,18 @@ function ClozeCard(text, cloze) {
 };
 
 
-//the new objects based on constructor ClozeCard
+//the new objects based on constructor ClozeCard.
 //note to self: for the cloze parameter, I added a space a the end so that .split() removes the space when this.partial is run.
-var firstPresident = 	new ClozeCard("George Washington was the first president of the United States.", "George Washington ");
-var firstOnMoon = 		new ClozeCard("Neil Armstrong was the first person on the moon.", "Neil Armstrong ");
-var cheeseState = 		new ClozeCard("Wisconsin is a US state known for its cheese.", "Wisconsin ");
-var largestAnimal = 	new ClozeCard("The blue whale is the largest animal on Earth.", "The blue whale ");
-var arizonaState = 		new ClozeCard("1912 was the year Arizona became a state.", "1912 ");
+var firstPresident = 	ClozeCard("George Washington was the first president of the United States.", "George Washington ");
+var firstOnMoon = 		ClozeCard("Neil Armstrong was the first person on the moon.", "Neil Armstrong ");
+var cheeseState = 		ClozeCard("Wisconsin is a US state known for its cheese.", "Wisconsin ");
+var largestAnimal = 	ClozeCard("The blue whale is the largest animal on Earth.", "The blue whale ");
+var arizonaState = 		ClozeCard("1912 was the year Arizona became a state.", "1912 ");
+var testNoNew =			ClozeCard("Scope-safe constructors allow users to make new objects without using the keyword 'new'.", "Scope-safe constructors ")
 //var brokenCloze = 		new ClozeCard("This should not work.", "The test.");
 
 
-//an array to store the ClozeCard objects
+//an array to store the ClozeCard objects. testNoNew does NOT go in here
 var quizArray = [firstPresident, firstOnMoon, cheeseState, largestAnimal, arizonaState];
 
 //======================= The Calls ========================
@@ -54,11 +63,13 @@ var quizArray = [firstPresident, firstOnMoon, cheeseState, largestAnimal, arizon
 //firstPresident.partial(); 	//test
 //firstPresident.fullText(); 	//test
 //brokenCloze.fullText(); 		//test
+//testNoNew.partial();			//test
 
 
 //the command after "node ClozeCard.js" to run this file will be "quiz"
 //these if/else-if statements below check against various entries
 //note to self: the order these are written in matters!!
+
 
 //if user doesn't enter a command
 if (!process.argv[2]) {
@@ -83,7 +94,6 @@ else if (process.argv[2].toLowerCase() === "quiz") {
 else {
 	console.log("You have an error.");
 };
-
 
 
 //export for future use

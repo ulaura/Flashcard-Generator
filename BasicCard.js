@@ -1,10 +1,18 @@
 //the constructor BasicCard
 function BasicCard(front, back) {
-	//the front of the flashcard
-	this.front = front;
+	
+	//making the constructor scope-safe so new objects don't need the keyword "new" before BasicCard
+	if (this instanceof BasicCard) {
+		//the front of the flashcard
+		this.front = front;
 
-	//the back of the flashcard
-	this.back = back;
+		//the back of the flashcard
+		this.back = back;
+	}
+
+	else {
+		return new BasicCard(front, back);
+	};
 
 	//module to show front of the flashcard
 	this.showFront = function () {
@@ -31,27 +39,29 @@ function BasicCard(front, back) {
 
 
 //the new objects based off of constructor BasicCard
-var firstPresident = new BasicCard("Who was the first president of the United States?", "George Washington");
-var firstOnMoon = new BasicCard("Who was the first person on the moon?", "Neil Armstrong");
-var cheeseState = new BasicCard("What US state is known for its cheese?", "Wisconsin");
-var largestAnimal = new BasicCard("What is the largest animal on Earth?", "The blue whale");
-var arizonaState = new BasicCard("What year did Arizona become a state?", "1912");
+var firstPresident = 	BasicCard("Who was the first president of the United States?", "George Washington");
+var firstOnMoon =  		BasicCard("Who was the first person on the moon?", "Neil Armstrong");
+var cheeseState =  		BasicCard("What US state is known for its cheese?", "Wisconsin");
+var largestAnimal =  	BasicCard("What is the largest animal on Earth?", "The blue whale");
+var arizonaState = 		BasicCard("What year did Arizona become a state?", "1912");
+var testNoNew = 		BasicCard("What allows users to make new objects without using the keyword 'new'?", "Scope-safe constructors!");
 
 
-//an array to store the BasicCard objects
+//an array to store the BasicCard objects. testNoNew does NOT go in here
 var questionArray = [firstPresident, firstOnMoon, cheeseState, largestAnimal, arizonaState];
 
 
 
 //================== the calls =================== 
 
-//firstPresident.showFront(); //test
-//firstPresident.showBack();  //test
-
+//firstPresident.showFront(); 	//test
+//firstPresident.showBack();  	//test
+//testNoNew.askQuestion();		//test
 
 //the command after "node BasicCard.js" to run this file will be "ask"
 //these if/else-if statements below check against various entries
 //note to self: the order these are written in matters!!
+
 
 //if user doesn't enter a command
 if (!process.argv[2]) {
