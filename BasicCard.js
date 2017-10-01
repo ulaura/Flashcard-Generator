@@ -35,7 +35,7 @@ var firstPresident = new BasicCard("Who was the first president of the United St
 var firstOnMoon = new BasicCard("Who was the first person on the moon?", "Neil Armstrong");
 var cheeseState = new BasicCard("What US state is known for its cheese?", "Wisconsin");
 var largestAnimal = new BasicCard("What is the largest animal on Earth?", "The blue whale");
-var arizonaState = new BasicCard("What year did Arizona become a state?", "1912")
+var arizonaState = new BasicCard("What year did Arizona become a state?", "1912");
 
 
 //an array to store the BasicCard objects
