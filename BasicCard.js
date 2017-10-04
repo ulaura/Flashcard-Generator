@@ -38,9 +38,46 @@ function BasicCard(front, back) {
 };
 
 
+//bringing in dependency inquirer npm package
+var inquirer = require("inquirer");
+
+//the function to allow users to build their own basic card
+function buildCard() {
+	console.log("Create your own flashcard!");
+	console.log("");
+
+	//ask the user what they want on as questions/answers on their flashcards
+	inquirer.prompt([
+		{
+			type: "input",
+			name: "front",
+			message: "What would you like on the front of your flashcard (Your question)?"
+		},
+		{
+			type: "input",
+			name: "back",
+			message: "What would you like on the back of your flashcard (Your answer)?"
+		}
+
+	])
+	.then(function(answers) {
+
+		//takes the user's answers and builds a new BasicCard object under variale newCard
+		var newCard = BasicCard (
+			answers.front,
+			answers.back
+		);
+
+		console.log("\nHere is your new card:");
+
+		//From the module in the constructor. runs through showing the question/answer of the card. 
+		newCard.askQuestion();
 
 
+	});
+};
 
+buildCard();
 
 
 /* Commented this section out until I know what to do with it later
