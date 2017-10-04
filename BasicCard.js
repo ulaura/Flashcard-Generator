@@ -38,6 +38,13 @@ function BasicCard(front, back) {
 };
 
 
+
+
+
+
+
+/* Commented this section out until I know what to do with it later
+
 //the new objects based off of constructor BasicCard
 var firstPresident = 	BasicCard("Who was the first president of the United States?", "George Washington");
 var firstOnMoon =  		BasicCard("Who was the first person on the moon?", "Neil Armstrong");
@@ -87,6 +94,8 @@ else {
 	console.log("You have an error.");
 };
 
+
+*/
 
 //the export (for future use)
 module.exports = BasicCard;
