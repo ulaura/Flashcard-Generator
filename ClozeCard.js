@@ -33,7 +33,7 @@ function ClozeCard(text, cloze) {
 
 		//if this.cloze does not exist in (doesn't match a part of) this.text, the error message will print
 		if (isHere === -1) {
-			console.log("You have an error in your constructor.");
+			console.log("Error: Your cloze-deletion is not present in the full text of your flashcard.");
 		}
 
 		//if this.cloze exists in (matches part of) this.text, this.text will print
@@ -44,56 +44,45 @@ function ClozeCard(text, cloze) {
 };
 
 
-//the new objects based on constructor ClozeCard.
-//note to self: for the cloze parameter, I added a space a the end so that .split() removes the space when this.partial is run.
-var firstPresident = 	ClozeCard("George Washington was the first president of the United States.", "George Washington ");
-var firstOnMoon = 		ClozeCard("Neil Armstrong was the first person on the moon.", "Neil Armstrong ");
-var cheeseState = 		ClozeCard("Wisconsin is a US state known for its cheese.", "Wisconsin ");
-var largestAnimal = 	ClozeCard("The blue whale is the largest animal on Earth.", "The blue whale ");
-var arizonaState = 		ClozeCard("1912 was the year Arizona became a state.", "1912 ");
-var testNoNew =			ClozeCard("Scope-safe constructors allow users to make new objects without using the keyword 'new'.", "Scope-safe constructors ")
-//var brokenCloze = 		new ClozeCard("This should not work.", "The test.");
+//bringing in dependency inquirer npm package
+var inquirer = require("inquirer");
+
+//the function to allow users to build their own basic card
+function buildCard() {
+	console.log("Create your own flashcard!");
+	console.log("");
+
+	//ask the user what they want on as questions/answers on their flashcards
+	inquirer.prompt([
+		{
+			type: "input",
+			name: "text",
+			message: "What would you like the FULL text of your flashcard to say?"
+		},
+		{
+			type: "input",
+			name: "cloze",
+			message: "What would you like the cloze-deletion part of your flashcard to say?"
+		}
+
+	])
+	.then(function(answers) {
+		//takes the user's answers and builds a new ClozeCard object under variale newCard
+		var newCard = ClozeCard (
+			answers.text,
+			answers.cloze
+		);
+
+		console.log("\nHere is your new card:");
+
+		//From the module in the constructor. runs through showing the question/answer of the card. 
+		newCard.partial();
 
 
-//an array to store the ClozeCard objects. testNoNew does NOT go in here
-var quizArray = [firstPresident, firstOnMoon, cheeseState, largestAnimal, arizonaState];
-
-//======================= The Calls ========================
-
-//firstPresident.partial(); 	//test
-//firstPresident.fullText(); 	//test
-//brokenCloze.fullText(); 		//test
-//testNoNew.partial();			//test
-
-
-//the command after "node ClozeCard.js" to run this file will be "quiz"
-//these if/else-if statements below check against various entries
-//note to self: the order these are written in matters!!
-
-
-//if user doesn't enter a command
-if (!process.argv[2]) {
-	console.log("Please type in <<quiz>> (without the carrots) after calling the app.");
-}
-
-//if user doesn't enter "quiz" as the command
-else if (process.argv[2].toLowerCase() !== "quiz") {
-	console.log("Please type in <<quiz>> (without the carrots) after calling the app.");
-}
-
-//if user correctly enters "quiz" as the command
-else if (process.argv[2].toLowerCase() === "quiz") {
-	//randomly selects an object from questionArray and stores it in chosenQuestion
-	var chosenQuiz = quizArray[Math.floor(Math.random() * quizArray.length)];
-
-	//executes function with randomly selected object from quizArray
-	chosenQuiz.partial();
-}
-
-//The necessary "else" to make if/else-if work
-else {
-	console.log("You have an error.");
+	});
 };
+
+buildCard();
 
 
 //export for future use

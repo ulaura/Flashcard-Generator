@@ -61,7 +61,6 @@ function buildCard() {
 
 	])
 	.then(function(answers) {
-
 		//takes the user's answers and builds a new BasicCard object under variale newCard
 		var newCard = BasicCard (
 			answers.front,
@@ -72,67 +71,11 @@ function buildCard() {
 
 		//From the module in the constructor. runs through showing the question/answer of the card. 
 		newCard.askQuestion();
-
-
 	});
 };
 
 buildCard();
 
-
-/* Commented this section out until I know what to do with it later
-
-//the new objects based off of constructor BasicCard
-var firstPresident = 	BasicCard("Who was the first president of the United States?", "George Washington");
-var firstOnMoon =  		BasicCard("Who was the first person on the moon?", "Neil Armstrong");
-var cheeseState =  		BasicCard("What US state is known for its cheese?", "Wisconsin");
-var largestAnimal =  	BasicCard("What is the largest animal on Earth?", "The blue whale");
-var arizonaState = 		BasicCard("What year did Arizona become a state?", "1912");
-var testNoNew = 		BasicCard("What allows users to make new objects without using the keyword 'new'?", "Scope-safe constructors!");
-
-
-//an array to store the BasicCard objects. testNoNew does NOT go in here
-var questionArray = [firstPresident, firstOnMoon, cheeseState, largestAnimal, arizonaState];
-
-
-
-//================== the calls =================== 
-
-//firstPresident.showFront(); 	//test
-//firstPresident.showBack();  	//test
-//testNoNew.askQuestion();		//test
-
-//the command after "node BasicCard.js" to run this file will be "ask"
-//these if/else-if statements below check against various entries
-//note to self: the order these are written in matters!!
-
-
-//if user doesn't enter a command
-if (!process.argv[2]) {
-	console.log("Please type in <<ask>> (without the carrots) after calling the app.");
-}
-
-//if user doesn't enter "ask" as the command
-else if (process.argv[2].toLowerCase() !== "ask") {
-	console.log("Please type in <<ask>> (without the carrots) after calling the app.");
-}
-
-//if user correctly enters "ask" as the command
-else if (process.argv[2].toLowerCase() === "ask") {
-	//randomly selects an object from questionArray and stores it in chosenQuestion
-	var chosenQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
-
-	//executes function with randomly selected object from questionArray
-	chosenQuestion.askQuestion();
-}
-
-//The necessary "else" to make if/else-if work
-else {
-	console.log("You have an error.");
-};
-
-
-*/
 
 //the export (for future use)
 module.exports = BasicCard;
