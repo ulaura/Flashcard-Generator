@@ -43,7 +43,7 @@ var inquirer = require("inquirer");
 
 //the function to allow users to build their own basic card
 function buildCard() {
-	console.log("Create your own flashcard!");
+	console.log("Create your own basic flashcard!");
 	console.log("");
 
 	//ask the user what they want on as questions/answers on their flashcards

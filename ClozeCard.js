@@ -29,27 +29,33 @@ function ClozeCard(text, cloze) {
 	//module to show this.text only if this.cloze is present in this.text
 	//works with this.partial()
 	this.fullText = function() {
+		//if this.cloze exists in (matches part of) this.text, this.text will print
+		console.log("The Answer: " + this.text);
+
+	};
+
+	//module to check if cloze-deletion works
+	this.errorCheck = function() {
 		var isHere = this.text.indexOf(this.cloze);
 
 		//if this.cloze does not exist in (doesn't match a part of) this.text, the error message will print
 		if (isHere === -1) {
-			console.log("Error: Your cloze-deletion is not present in the full text of your flashcard.");
+			return console.log("\nError: Your cloze-deletion is not present in the full text of your flashcard.");
 		}
-
-		//if this.cloze exists in (matches part of) this.text, this.text will print
 		else {
-			console.log("The Answer: " + this.text);
+			console.log("\nHere is your new card:");
+			this.partial();
 		}
-	};
+	}
 };
 
 
 //bringing in dependency inquirer npm package
 var inquirer = require("inquirer");
 
-//the function to allow users to build their own basic card
+//the function to allow users to build their own cloze-deletion card
 function buildCard() {
-	console.log("Create your own flashcard!");
+	console.log("Create your own cloze-deletion flashcard!");
 	console.log("");
 
 	//ask the user what they want on as questions/answers on their flashcards
@@ -73,10 +79,9 @@ function buildCard() {
 			answers.cloze
 		);
 
-		console.log("\nHere is your new card:");
-
+	
 		//From the module in the constructor. runs through showing the question/answer of the card. 
-		newCard.partial();
+		newCard.errorCheck();
 
 
 	});

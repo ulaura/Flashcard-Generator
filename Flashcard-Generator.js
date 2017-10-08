@@ -12,7 +12,7 @@ inquirer.prompt([
 
 ])
 .then(function(answers) {
-	console.log(answers);
+	//console.log(answers); //test
 
 	if (answers.cardType === "Basic flashcard") {
 		//taking export from BasicCard.js
