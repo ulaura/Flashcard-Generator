@@ -17,11 +17,15 @@ inquirer.prompt([
 	if (answers.cardType === "Basic flashcard") {
 		//taking export from BasicCard.js
 		var BasicCard = require("./BasicCard.js");
+
+		//calling the constructor from BasicCard.js
 		BasicCard.BasicCard;	
 	}
 	else if (answers.cardType === "Cloze-deletion flashcard") {
 		//taking export from ClozeCard.js
 		var ClozeCard = require("./ClozeCard.js");
+
+		//calling the constructor from ClozeCard.js
 		ClozeCard.ClozeCard;
 	}	
 	
