@@ -14,6 +14,21 @@ function ClozeCard(text, cloze) {
 		return new ClozeCard(text, cloze);
 	};
 
+	//module to check if cloze-deletion works before running this.partial()
+	this.errorCheck = function() {
+		var isHere = this.text.indexOf(this.cloze);
+
+		//if this.cloze does not exist in (doesn't match a part of) this.text, the error message will print
+		if (isHere === -1) {
+			return console.log("\nError: Your cloze-deletion is not present in the full text of your flashcard.");
+		}
+		else {
+			//if this.cloze does exist in this.tex, run this.partial();
+			console.log("\nHere is your new card:");
+			this.partial();
+		}
+	};
+	
 	//module to show partial text
 	this.partial = function() {
 		//first splits this.text into an array of values, separated at this.cloze.
@@ -34,19 +49,7 @@ function ClozeCard(text, cloze) {
 
 	};
 
-	//module to check if cloze-deletion works
-	this.errorCheck = function() {
-		var isHere = this.text.indexOf(this.cloze);
 
-		//if this.cloze does not exist in (doesn't match a part of) this.text, the error message will print
-		if (isHere === -1) {
-			return console.log("\nError: Your cloze-deletion is not present in the full text of your flashcard.");
-		}
-		else {
-			console.log("\nHere is your new card:");
-			this.partial();
-		}
-	}
 };
 
 
